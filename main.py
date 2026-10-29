@@ -1,58 +1,71 @@
-print("ola seja bem vindo ao sistema de senha")
-nome = input("Digite seu nome: ")
-senha = input("coloque sua senha: ")
-idade = int(input("Digite sua idade: "))
+print("-" * 10 + " bem vindo a calculadora " + "-" * 10)
 
-if idade >= 18:
-    print("ola", nome, "voce tem acesso ao sistema")
-    input_senha = input("Digite sua senha para entrar: ")
+nome = input("digite seu nome: ")
+print("seja bem vindo, " + nome)
 
-    if input_senha == senha:
-        print("Senha correta! Acesso concedido.")
+senha_1 = input("digite a sua senha: ")
+senha_2 = input("confirme a sua senha: ")
 
-        while True:
-            oque_vamos_agora = (
-                input(
-                    "\nO que vamos fazer agora? (calculadora / par ou impar / sair): "
-                )
-                .strip()
-                .lower()
-            )
+while senha_1 != senha_2:
+    print("senha incorreta, tente novamente")
+    senha_1 = input("digite a sua senha: ")
+    senha_2 = input("confirme a sua senha: ")
 
-            if oque_vamos_agora == "calculadora":
-                n1 = float(input("Digite o primeiro numero: "))
-                n2 = float(input("Digite o segundo numero: "))
-                operacao = input("Digite a operação (+, -, *, /): ").strip()
+print("senha correta, você pode acessar a calculadora")
 
-                if operacao == "+":
-                    print("O resultado da soma é:", n1 + n2)
-                elif operacao == "-":
-                    print("O resultado da subtração é:", n1 - n2)
-                elif operacao == "*":
-                    print("O resultado da multiplicação é:", n1 * n2)
-                elif operacao == "/":
-                    if n2 != 0:
-                        print("O resultado da divisão é:", n1 / n2)
-                    else:
-                        print("Erro: Divisão por zero não é permitida.")
+while True:
+    print("\n" + "=" * 40)
+    print("na calculadora temos as seguintes opções:")
+    print("digite (1) 🖩 para a calculadora 🖩")
+    print("digite (2) para impar ou par")
+    print("digite (3) para sair do programa")
+    
+    opção = input("digite sua opção: ")
+
+    try:
+        if opção == "1":
+            print("🖩 você escolheu calculadora 🖩")
+            n1 = float(input("digite seu primeiro numero: ").replace(",", "."))
+            n2 = float(input("digite seu segundo numero: ").replace(",", "."))
+
+            print("digite (+) para somar")
+            print("digite (-) para subtrair")
+            print("digite (*) para multiplicar")
+            print("digite (/) para dividir")
+            opção_calculadora = input("digite a sua operação: ")
+
+            if opção_calculadora == "+":
+                print("resultado é:", n1 + n2)
+
+            elif opção_calculadora == "-":
+                print("resultado é:", n1 - n2)
+
+            elif opção_calculadora == "*":
+                print("resultado é:", n1 * n2)
+
+            elif opção_calculadora == "/":
+                if n2 != 0:
+                    print("resultado é:", n1 / n2)
                 else:
-                    print("Operação inválida!")
-
-            elif oque_vamos_agora == "par ou impar":
-                num = int(input("Digite um numero: "))
-                if num % 2 == 0:
-                    print(f"O numero {num} é PAR")
-                else:
-                    print(f"O numero {num} é ÍMPAR")
-
-            elif oque_vamos_agora == "sair":
-                print("Saindo do sistema... Até logo!")
-                break
-
+                    print("Erro: não é possível dividir por zero!")
             else:
-                print("Opção inválida! Escolha 'calculadora', 'par ou impar' ou 'sair'.")
+                print("Operação inválida!")
 
-    else:
-        print("Senha incorreta! Acesso negado.")
-else:
-    print("Desculpe", nome, "voce nao tem acesso ao sistema")
+        elif opção == "2":
+            print("você escolheu par e ímpar")
+            n3 = int(input("digite seu número para saber se é ímpar ou par: "))
+            
+            if n3 % 2 == 0:
+                print("o número", n3, "é par")
+            else:
+                print("o número", n3, "é ímpar")
+
+        elif opção == "3":
+            print("você escolheu sair. tchau!")
+            break
+
+        else:
+            print("Opção inválida! Escolha 1, 2 ou 3.")
+
+    except ValueError:
+        print("Erro: digite apenas números válidos!")
